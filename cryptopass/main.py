@@ -1,48 +1,17 @@
-from cryptography.fernet import Fernet
+
 import sqlite3
-import random
-import string
+
+import crypto
 from tkinter import *
 from PIL import ImageTk, Image
 import clipboard
 MainWindow = Tk()
 MainWindow.title("CryptoPass")
 logoimg = ImageTk.PhotoImage(Image.open("media/logo.png"))
-def read_key():
-    file = open("haha.k", "rb")
-    key = file.read()
-    file.close()
-    return key
-
-
-def encrypt(filename):
-    with open(filename, "rb") as f:
-        data = f.read()
-    fernet = Fernet(read_key())
-    with open(filename, "wb") as f:
-        f.write(fernet.encrypt(data))
-    f.close()
-
-
-def dencrypt(filename):
-    with open(filename, "rb") as f:
-        data = f.read()
-    fernet = Fernet(read_key())
-    dencrypts = fernet.decrypt(data)
-    with open(filename, "wb") as f:
-        f.write(dencrypts)
-
-def generate_password():
-    letters = ''.join((random.choice(string.ascii_letters) for i in range(10)))
-    digits = ''.join((random.choice(string.digits) for i in range(5)))
-
-    sample_list = list(letters + digits)
-    random.shuffle(sample_list)
-    return ''.join(sample_list)
 
 
 try:
-    dencrypt("password.db")
+    crypto.dencrypt("password.db")
 except:
     pass
 
@@ -117,5 +86,5 @@ conn.commit()
 
 
 MainWindow.mainloop()
-encrypt("password.db")
+crypto.encrypt("password.db")
 conn.close()
