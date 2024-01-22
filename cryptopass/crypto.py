@@ -1,7 +1,4 @@
-
 from cryptography.fernet import Fernet
-
-
 import random
 import string
 
