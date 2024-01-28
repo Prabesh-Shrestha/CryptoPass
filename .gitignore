@@ -1,6 +1,4 @@
 
-env/*
-
-cryptopass/password.db
+env
 
 
