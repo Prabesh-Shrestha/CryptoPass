@@ -29,8 +29,8 @@ def dencrypt(filename):
 
 
 def generate_password():
-    letters = "".join((random.choice(string.ascii_letters) for i in range(10)))
-    digits = "".join((random.choice(string.digits) for i in range(5)))
+    letters = "".join((random.choice(string.ascii_letters) for _ in range(10)))
+    digits = "".join((random.choice(string.digits) for _ in range(5)))
 
     sample_list = list(letters + digits)
     random.shuffle(sample_list)

@@ -7,7 +7,7 @@ def load_ui(connection, cursor):
     def Searchanddisplay(name):
         name, url, password = findByName(cursor, name)
         Label(
-            MainWindow,
+            Window,
             text="Name of website:           Url of the website:         Password of Website:",
         ).grid(row=5, column=0, columnspan=3)
         data = (
@@ -17,32 +17,32 @@ def load_ui(connection, cursor):
             + "                                  "
             + password
         )
-        Label(MainWindow, text=data).grid(row=6, column=0, columnspan=3)
+        Label(Window, text=data).grid(row=6, column=0, columnspan=3)
         Button(
-            MainWindow, text="Copy", command=lambda: MainWindow.clipboard_get()
+            Window, text="Copy", command=lambda: Window.clipboard_get()
         ).grid(row=6, column=3)
 
-    MainWindow = Tk()
-    MainWindow.title("CryptoPass")
+    Window = Tk()
+    Window.title("CryptoPass")
 
     Logo = ImageTk.PhotoImage(Image.open("media/logo.png"))
-    Label(MainWindow, image=Logo).grid(row=0, column=0, columnspan=3)
+    Label(Window, image=Logo).grid(row=0, column=0, columnspan=3)
 
     Label(
-        MainWindow,
+        Window,
         text="Name of website:           Url of the website:         Password of Website:",
     ).grid(row=1, column=0, columnspan=3)
 
-    NewName = Entry(MainWindow)
-    NewUrl = Entry(MainWindow)
-    NewPassword = Entry(MainWindow)
+    NewName = Entry(Window)
+    NewUrl = Entry(Window)
+    NewPassword = Entry(Window)
 
     NewName.grid(row=2, column=0)
     NewUrl.grid(row=2, column=1)
     NewPassword.grid(row=2, column=2)
 
     AddButton = Button(
-        MainWindow,
+        Window,
         text="Add",
         command=lambda: insertToTable(
             connection, cursor, NewName.get(), NewUrl.get(), NewPassword.get()
@@ -50,16 +50,16 @@ def load_ui(connection, cursor):
     )
     AddButton.grid(row=2, column=3)
 
-    Label(MainWindow, text="Name of website:").grid(row=3, column=0, columnspan=3)
+    Label(Window, text="Name of website:").grid(row=3, column=0, columnspan=3)
 
     Name = Entry(
-        MainWindow,
+        Window,
         width=60,
     )
     Name.grid(row=4, column=0, columnspan=3)
 
     Button(
-        MainWindow, text="Search", command=lambda: Searchanddisplay(Name.get())
+        Window, text="Search", command=lambda: Searchanddisplay(Name.get())
     ).grid(row=4, column=3)
 
-    return MainWindow
+    return Window
